@@ -59,9 +59,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             Toast.makeText(getApplicationContext(),jsonObject.getString("message"),Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getApplicationContext(),"1",Toast.LENGTH_LONG).show();
 
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            //Toast.makeText(getApplicationContext(),"2",Toast.LENGTH_LONG).show();
                         }
 
                     }
@@ -69,9 +71,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
                 progressDialog.hide();
                 Toast.makeText(getApplicationContext(),error.getMessage(),Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(),"3",Toast.LENGTH_LONG).show();
             }
         }){
             @Override
@@ -83,8 +85,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return params;
             }
         };
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
+       RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
+        //Toast.makeText(getApplicationContext(),"4",Toast.LENGTH_LONG).show();
     }
     @Override
     public void onClick(View view) {
@@ -92,6 +94,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
             registerUser();
         }
-
     }
 }
