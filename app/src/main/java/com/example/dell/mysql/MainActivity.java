@@ -1,12 +1,14 @@
 package com.example.dell.mysql;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText Username,Email,Password;
     private Button Register;
     private ProgressDialog progressDialog;
+    private TextView textviewLogin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,8 +41,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Password = findViewById(R.id.Password);
         Register = findViewById(R.id.Register);
 
+        textviewLogin = findViewById(R.id.teextviewLogin);
+
         progressDialog = new ProgressDialog(this);
         Register.setOnClickListener(this);
+        textviewLogin.setOnClickListener(this);
     }
 
     private void registerUser(){
@@ -93,6 +99,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(view==Register)
         {
             registerUser();
+        }
+        if(view==textviewLogin)
+        {
+            startActivity(new Intent(this,LoginActivity.class));
         }
     }
 }
