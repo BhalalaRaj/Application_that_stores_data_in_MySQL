@@ -1,0 +1,13 @@
+===Database android
+
+== Table structure for table users
+
+|------
+|Column|Type|Null|Default
+|------
+|//**id**//|int(11)|No|
+|username|varchar(100)|No|
+|password|text|No|
+|email|varchar(100)|No|
+
+
