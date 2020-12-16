@@ -1,6 +1,7 @@
 package com.example.dell.mysql;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -33,6 +34,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        if(SharedPrefManager.getInstance(this).isLoggedIn())
+        {
+            finish();
+            startActivity(new Intent(this,ProfileActivity.class));
+            return;
+
+        }
+
         Username = findViewById(R.id.Username);
         Password = findViewById(R.id.Password);
         Login = findViewById(R.id.Login);
@@ -64,7 +73,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                         .userLogin(obj.getInt("id"),
                                                 obj.getString("username"),
                                                 obj.getString("email"));
-                                Toast.makeText(getApplicationContext(),"user login successful",Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
+                                finish();
                             }else{
                                 Toast.makeText(getApplicationContext(),obj.getString("message"),Toast.LENGTH_LONG).show();
                             }

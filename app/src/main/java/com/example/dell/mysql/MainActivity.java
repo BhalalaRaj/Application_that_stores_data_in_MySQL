@@ -36,6 +36,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if(SharedPrefManager.getInstance(this).isLoggedIn())
+        {
+            finish();
+            startActivity(new Intent(this,ProfileActivity.class));
+            return;
+        }
+
         Username = findViewById(R.id.Username);
         Email = findViewById(R.id.Email);
         Password = findViewById(R.id.Password);
